@@ -40,7 +40,7 @@ If you want to copy and modify one of the demo R scripts, you can use the system
 
 **References**:
 
-*Irvahn J, Chattopadhyay S, Sokurenko EV, Minin VN.
+* Irvahn J, Chattopadhyay S, Sokurenko EV, Minin VN.
 [rbrothers: R package for Bayesian multiple change-point recombination detection](http://www.la-press.com/rbrothers-r-package-for-bayesian-multiple-change-point-recombination-d-article-a3718), *Evolutionary Bioinformatics*, 9, 235-238, 2013.
 * Minin VN, Dorman KS, Suchard MA.
  [Dual multiple change-point model leads to more accurate recombination detection](http://bioinformatics.oxfordjournals.org/content/21/13/3034.long),
