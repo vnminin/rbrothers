@@ -17,6 +17,7 @@ install_github("vnminin/rbrothers",build_vignettes=TRUE)
 ```
 
 **Demos**:
+
 We provide the following scripts demonstrating the usage of the package.
 * E. coli *fimH* (runs for about 2 minutes):
 ```
@@ -38,6 +39,7 @@ If you want to copy and modify one of the demo R scripts, you can use the system
 ```
 
 **References**:
+
 *Irvahn J, Chattopadhyay S, Sokurenko EV, Minin VN.
 [rbrothers: R package for Bayesian multiple change-point recombination detection](http://www.la-press.com/rbrothers-r-package-for-bayesian-multiple-change-point-recombination-d-article-a3718), *Evolutionary Bioinformatics*, 9, 235-238, 2013.
 * Minin VN, Dorman KS, Suchard MA.
