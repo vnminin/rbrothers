@@ -180,11 +180,11 @@ write.dna<-function (x, file, format = "interleaved", append = FALSE, nbcol = 6,
 
 
 if(format=="fasta"){
-small.align = read.dna(paste(alignment,".fasta",sep=""), format = "fasta")
+small.align = ape::read.dna(paste(alignment,".fasta",sep=""), format = "fasta")
 write.dna(small.align,file=paste(basename,".phy",sep=""))
 }
 if(format=="interleaved"){
-small.align = read.dna(paste(alignment,".phy",sep=""), format = "interleaved")
+small.align = ape::read.dna(paste(alignment,".phy",sep=""), format = "interleaved")
 write.dna(small.align,file=paste(basename,".phy",sep=""))
 }
 
@@ -207,7 +207,7 @@ for(ws in 1:length(window.size)){
  window.start = 1
  window.end = window.start + window.size[ws] -1
  while (window.end < align.length){
-  temp.tree = bionj(dist.dna(small.align[,window.start:window.end]))
+  temp.tree = ape::bionj(ape::dist.dna(small.align[,window.start:window.end]))
   temp.tree$edge.length = NULL
   sw.trees[[my.counter]] = temp.tree
   window.start = window.start + step.size
@@ -223,7 +223,7 @@ if(boot>0){
    window.start = 1
    window.end = window.start + window.size[ws] -1
    while (window.end < align.length){
-    temp.tree = bionj(dist.dna(small.align[,sample(window.start:window.end,replace=TRUE)]))
+    temp.tree = ape::bionj(ape::dist.dna(small.align[,sample(window.start:window.end,replace=TRUE)]))
     temp.tree$edge.length = NULL
     sw.trees[[my.counter]] = temp.tree
     window.start = window.start + step.size
@@ -237,27 +237,27 @@ if(boot>0){
 cleaned.sw.trees = unique(sw.trees)
 }
 
-if(taxa.num==6){cleaned.sw.trees = read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/six-input.tre",sep=""))}
-if(taxa.num==5){cleaned.sw.trees = read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/five-input.tre",sep=""))}
-if(taxa.num==4){cleaned.sw.trees = read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/four-input.tre",sep=""))}
-if(taxa.num==3){cleaned.sw.trees = read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/three-input.tre",sep=""))}
+if(taxa.num==6){cleaned.sw.trees = ape::read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/six-input.tre",sep=""))}
+if(taxa.num==5){cleaned.sw.trees = ape::read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/five-input.tre",sep=""))}
+if(taxa.num==4){cleaned.sw.trees = ape::read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/four-input.tre",sep=""))}
+if(taxa.num==3){cleaned.sw.trees = ape::read.tree(paste(system.file(package="rbrothers"),"/extdata/smalltrees/three-input.tre",sep=""))}
 }
 
-if(!is.null(inputtrees)) cleaned.sw.trees<-unique(read.tree(inputtrees))
+if(!is.null(inputtrees)) cleaned.sw.trees<-unique(ape::read.tree(inputtrees))
 
 tree.num = length(cleaned.sw.trees)
 
 
-my.tree = root(cleaned.sw.trees[[1]], outgroup="0", resolve.root=TRUE)
-write.tree(my.tree, file=paste(basename,"-input.tre",sep=""), append=FALSE)
+my.tree = ape::root(cleaned.sw.trees[[1]], outgroup="0", resolve.root=TRUE)
+ape::write.tree(my.tree, file=paste(basename,"-input.tre",sep=""), append=FALSE)
 for (i in 2:tree.num){
-  my.tree = root(cleaned.sw.trees[[i]], outgroup="0", resolve.root=TRUE)
-  write.tree(my.tree, file=paste(basename,"-input.tre",sep=""), append=TRUE)
+  my.tree = ape::root(cleaned.sw.trees[[i]], outgroup="0", resolve.root=TRUE)
+  ape::write.tree(my.tree, file=paste(basename,"-input.tre",sep=""), append=TRUE)
 }
 
-temp.tree = read.tree(paste(basename,"-input.tre",sep=""))
+temp.tree = ape::read.tree(paste(basename,"-input.tre",sep=""))
 unique.trees = unique(temp.tree)
-write.tree(unique.trees, file=paste(basename,"-input.tre",sep=""))
+ape::write.tree(unique.trees, file=paste(basename,"-input.tre",sep=""))
 
 if(length(unique.trees)<3) {
  print("Tree list must have at least 3 trees. Try the bootstrap argument, see help(dualbrothers).")
@@ -265,8 +265,8 @@ if(length(unique.trees)<3) {
 }
 
    cat(paste("tree_file: ",basename,"-input.tre",sep=""), file = paste(basename,".cmdfile",sep=""),append=TRUE)
-   dbs <- .jnew("DualBrothersForR")
-   out <- .jcall(dbs, "V", "main", c(seed,paste(basename,".cmdfile",sep=""),paste(basename,".phy",sep=""),paste(basename,".post",sep=""))) 
+   dbs <- rJava::.jnew("DualBrothersForR")
+   out <- rJava::.jcall(dbs, "V", "main", c(seed,paste(basename,".cmdfile",sep=""),paste(basename,".phy",sep=""),paste(basename,".post",sep=""))) 
    #system(paste("java DualBrothers ",seed," ",basename,".cmdfile ",basename, ".phy ",basename,".post",sep=""))
    topologyprofile(basename)
    epprofile(basename)
@@ -285,7 +285,7 @@ breaks<-findbreakpoints(basename)
 
 #### read in the trees
 treenum<-dim(probs)[2]-1
-trees<-read.tree(paste(basename,".tree",sep=""),tree.names=seq(1:treenum),keep.multi=TRUE)
+trees<-ape::read.tree(paste(basename,".tree",sep=""),tree.names=seq(1:treenum),keep.multi=TRUE)
 
 #### relabel the tips with the names from the .phy file
 for(i in 1:treenum){
