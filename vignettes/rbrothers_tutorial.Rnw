@@ -67,7 +67,7 @@ library(rbrothers)
 
 We walk through the rbrothers workflow using four strains of HIV-1 isolate KAL153 from Kaliningrad, Russia \cite{liitsola1998hiv}. Copy the KAL153.phy file from the rbrothers package to your current working directory.
 <<two>>=
-my.align = read.dna(file=system.file("extdata/KAL153/KAL153.phy", 
+my.align = ape::read.dna(file=system.file("extdata/KAL153/KAL153.phy", 
 	  	   package="rbrothers"))
 write.dna(my.align,"KAL153.phy")
 @
