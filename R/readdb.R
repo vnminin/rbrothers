@@ -8,7 +8,7 @@ names[i]<-(scan(paste(basename,".phy",sep=""),what='raw',nlines=1,skip=i)[1])
 }
 breaks<-findbreakpoints(basename)
 treenum<-dim(probs)[2]-1
-trees<-read.tree(paste(basename,".tree",sep=""),tree.names=seq(1:treenum),keep.multi=TRUE)
+trees<-ape::read.tree(paste(basename,".tree",sep=""),tree.names=seq(1:treenum),keep.multi=TRUE)
 for(i in 1:treenum){
  for(j in 1:P){
   trees[[i]]$tip.label[j]<-names[as.integer(trees[[i]]$tip.label[j])+1]
