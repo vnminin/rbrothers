@@ -69,7 +69,7 @@ We walk through the rbrothers workflow using four strains of HIV-1 isolate KAL15
 <<two>>=
 my.align = ape::read.dna(file=system.file("extdata/KAL153/KAL153.phy", 
 	  	   package="rbrothers"))
-write.dna(my.align,"KAL153.phy")
+ape::write.dna(my.align,"KAL153.phy")
 @
 
 Now you can run DualBrothers with a single command. The `seed' argument is any integer used to seed the package's pseudo-random number generator. The `alignment' argument is the name of the input file (less the `.phy' extension). The `format' argument tells rbrothers the format of the input file, either `interleaved' or `fasta'. The `par\_lambda' argument sets the prior mean number of substitution process change-points. The `top\_lambda' argument sets the prior mean number of topology breakpoints. You can find more information about the details of the DualBrothers program at \url{http://faculty.biomath.ucla.edu/msuchard/htdocs/DualBrothers/}. 
