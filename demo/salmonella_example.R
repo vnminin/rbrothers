@@ -17,8 +17,8 @@ breakpointCI(fimH.db,570,700)
 
 ### Salmonella fimA Analysis ########
 
-my.fimA.align = read.dna(file=system.file("extdata/Salmonella/Salmonella_fimA8.phy",package="rbrothers"))
-write.dna(my.fimA.align,"Salmonella_fimA8.phy")
+my.fimA.align = ape::read.dna(file=system.file("extdata/Salmonella/Salmonella_fimA8.phy",package="rbrothers"))
+ape::write.dna(my.fimA.align,"Salmonella_fimA8.phy")
 
 fimA.db<-dualbrothers(round(runif(1,1,10000),0),"Salmonella_fimA8", top_lambda=0.001, par_lambda=1, window.size=250)
 
